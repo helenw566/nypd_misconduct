@@ -1,66 +1,48 @@
-## NYPD Misconduct
+## Predicting NYPD Misconduct Case Outcomes and Penalties
 
 Helen Wang (@helenw566, email: hw566@georgetown.edu)
 
 #### Abstract
 
-> Capital Bikeshare was first implemented in the metropolitan DMV area in 2010 as an alternative transit option for residents. In our study, we assessed the impact of opening such a station on local traffic volume. Using traffic APIs and station coordinates, we obtained Annual Average Daily Traffic (AADT) from monitors around each Bikeshare station between the years of 2007-2019. Using 2013 as the reference year, we limited our sample to the 78 stations that opened that year and evaluated change in AADT 6 years pre- and post-station opening. Using OLS, we observed no significant effects, however, panel data analysis with entity effects found significant reductions in traffic volume, with opening a station being linked to a 9% reduction in AADT. A two-way fixed effect model with time effects included, on the other hand, suggested that opening a station did not affect traffic volume. As such, the current results of the study are inconclusive and require further investigation. Limitations of the study include the need to control for confounding factors such as population density and public transit infrastructure changes. The scarcity of the granular geolocation and time data needed for such changes remain prominent challenges for future work.
+> The issue of police misconduct is important, especially given rising cases of police violence, police brutality, and fatalities as a result of such misconduct. Such issues have resulted in the loss of multiple lives, increased racial tensions across the US, and fractured public trust in law enforcement. The literature has explored various factors linked to police misconduct and has similarly evaluated predictors of not only future misconduct but also misconduct case outcomes. Few studies, however, have accounted for the impact of media coverage on police misconduct. Those who do have primarily limited their analysis to the impact of media coverage on public perceptions of police misconduct. No article to date has assessed the role that the media can play in influencing misconduct case outcomes, despite the potential pressure that media can have on ensuring that sufficient sanctions are levied. To address this gap, in this study, we will utilize a dataset of police misconduct cases drawn from the New York City Police Department (NYPD) to do the following:
+> 1.	Assess the impact that media coverage/visibility of a given police misconduct incident has on its case outcome, specifically its complaint disposition, as well as the type of resulting penalty.
+> 2.	Using the literature, identify and verify additional factors predictive of police misconduct case outcomes such as officer/victim race, gender and age, along with incident location, police contact type, etc.
+> 3.	Develop a supervised model to predict case and penalty outcomes for police misconduct cases.
 
 #### Reposiory Contents
 
 This repository contains the following folders: 
 
 - data
-  - cleaned_data
-  - raw_data
-- proposal
+- paper
 - scripts
-- visualizations
-  - tables
-  - graphs
- - report
 
  Descriptions of folder contents can be found below.
 
  #### Data
 
-This folder contains all the data files we used to conduct our analysis. Specifically, the raw_data folder contains all the raw, uncleaned data utilized in our study. We include in this folder the following:
+This folder contains the cleaned data utilized for this study. 
 
- - "county_shape_file_zipped" and "dc_shape_file_zipped": The zipped files of the Shapefiles utilized in our study, namely the 2024 County and Equivalent National shapefile as well as the 2024 Census Tract shape files for the District of Columbia
- - "opened_capital_bikes_proposed.xlsx": The .xlsx file for the Capital Bikeshare Expansion Plans
- - "capital_bike_locations.geojson": The .geojson file contain the location of all Capital Bikeshare Locations
+Raw data files can be located at the links provided below. We primarily drew data from three sources:
 
-We do not include the traffic volume data here because they were extracted from an API (data is in cleaned_data below). The size of the Capital Bikeshare Trip history .csvs are too large for Github so we attached a file ("trip_history_data_links.md") containing the links to the raw dataset.
+- [NYPD Civilian Complaint Review Board (CCRB) Database](https://data.cityofnewyork.us/browse?Data-Collection_Data-Collection=CCRB+Complaints+Database&sortBy=relevance&pageSize=20&page=1), which contains the following datasets
+  - Allegations Against Police Officers: a list of all closed allegations made against NYPD officers, including information about the complainant, the officer, allegation, and resulting deposition 
+  - Complaints Against Police Officers: a list containing information such as dates, locations, and circumstances surrounding the allegation 
+  - Police Officers: a list of all NYPD officers and the number of total and substantiated complaints on their record 
+  - Penalties: a list containing case and trial penalty information
+- [Mapping Police Violence Project](https://airtable.com/appzVzSeINK1S3EVR/shroOenW19l1m3w0H/tblxearKzw8W7ViN8), which used google alerts to get news articles on police violence events to construct their dataset
+- [New York Times API](https://developer.nytimes.com/docs/articlesearch-product/1/overview), to scrape for relevant news articles on the officers and their associated misconduct cases. 
 
-The cleaned_data folder contains all the datafiles we cleaned throughout the project, including:
 
-- "opened_capital_bikes.csv": This .csv contains the merged Capital Bikeshare Location data as well the opening year variable constructed from the Capital Bikeshare Trip History data
-- "opened_cb_traffic.csv": This .csv contains the results of "opened_capital_bikes.csv" merged with data extracted from the Traffic API. It contains all the traffic volume data for all capital bikeshare stations that are opened as of 2024
-- "unopened_cb_traffic.csv": This .csv contains the results of "opened_capital_bikes_proposed.xlsx" merged with data extracted from the Traffic API. It contains allt the traffic volume data for proposed capital bikeshare stations.
-- "final_data.csv": This .csv contains contains the result of merging "opened_cb_traffic.csv" with "unopened_cb_traffic.csv"
+#### Paper
 
-#### Proposal
-
-This folder contains a .pdf file of the original Project Proposal that launched this project
+This folder contains .docx and .pdf files for all stage submissions for the final paper of the project as well as the final report generated. Written for PPOL5204: Data Science II: App Stat Lng at Georgetown
 
 #### Scripts
 
-This folder contains all the .ipynb files used to clean the data, run analyses, and create visualizations. Here are the descriptions of the purpuses and outputs of each script:
+This folder contains all the .ipynb files used to scrap data, preprocess, and run analyses. Here are the descriptions of the purpuses and outputs of each script:
 
-- "01_cleaning_capital_bikeshare.ipynb": This script extracts the data from "capital_bike_locations.geojson" and computes the opening year from the Trip History data before mergining the files together. This produces the "opened_capital_bikes.csv" file.
-- "02_cleaning_traffic.ipynb": This strip takes in "opened_capital_bikes.csv" and uses it to query the Traffic API. It produces the following files: "opened_cb_traffic.csv" and "unopened_cb_traffic.csv"
-- "03_merging_data.ipynb": This script merges "opened_capital_bikes.csv" and "opened_cb_traffic.csv" to create "final_data.csv"
-- "04_data_analysis.ipynb": This script contains all the code used to run our analysis, including our OLS models and Panel Data Anlysis. It produces all the latex tables stored in \visualisations\tables as well as some of the regression graphs in \visualizations\graphs
-- "05_visualizations.ipynb": This script contains the code used to create MOST but not all of our visualizations in \visualizations\graphs. This constructs most of our maps, basic linegraphs, and bar graphs.
-- "06_proposed_stations.ipynb": This script runs the descriptive analysis used to construct on our policy recommendations. It also produces one of the visualizations present in \visualizations\graphs
+- "01_preprocessing.ipynb": This script takes in the raw data, merges it, preprocesses it, and runs initial descriptive analysis before producing cleaned_data.csv
+- "02_news_data.ipynb": This stript scrapes the NYT Article API for news hits and produces a data file that is then merged into cleaned_data.csv in "01_preprocessing.ipynb"
+- "03_modeling.ipynb": This script conducts initial SMOTE and initial model selection as well as hyperparameter tuning.
 
-#### Visualizations
-
-This folder contains all of the tables and visualizations producted in our analysis. They are separated into the following folders:
-
- - tables: This contains all of our latex tables
- - graphs: This contains all of our maps, line graphs, and bar graphs
-
-#### Report
-
-This folder contains a .pdf of our final report that was producted in Overleaf Latex.
