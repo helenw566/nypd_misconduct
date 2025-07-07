@@ -23,7 +23,7 @@ This repository contains the following folders:
 
  #### Data
 
-This folder contains the cleaned data utilized for this study, the raw police misconduct data, as well as data collected via NYT scraping.. 
+This folder contains the cleaned data utilized for this study, the raw police misconduct data, as well as data collected via NYT scraping.
 
 We primarily drew data from three sources:
 
