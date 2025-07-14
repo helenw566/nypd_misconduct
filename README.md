@@ -14,10 +14,10 @@ Helen Wang (@helenw566, email: hw566@georgetown.edu)
 
 This repository contains the following folders: 
 
-- data
-- paper
-- scripts
-- slides
+- `data`
+- `paper`
+- `scripts`
+- `slides`
 
  Descriptions of folder contents can be found below.
 
@@ -44,9 +44,9 @@ This folder contains .docx and .pdf files for all stage submissions for the fina
 
 This folder contains all the .ipynb and resulting html files used to scrap data, preprocess, and run analyses. Here are the descriptions of the purpuses and outputs of each script:
 
-- "01_preprocessing": This script takes in the raw data, merges it, preprocesses it, and runs initial descriptive analysis before producing cleaned_data.csv
-- "02_news_data": This stript scrapes the NYT Article API for news hits and produces a data file that is then merged into cleaned_data.csv in "01_preprocessing.ipynb"
-- "03_modeling": This script conducts initial SMOTE and initial model selection as well as hyperparameter tuning.
+- `01_preprocessing`: This script takes in the raw data, merges it, preprocesses it, and runs initial descriptive analysis before producing cleaned_data.csv
+- `02_news_data`: This stript scrapes the NYT Article API for news hits and produces a data file that is then merged into cleaned_data.csv in "01_preprocessing.ipynb"
+- `03_modeling`: This script conducts initial SMOTE and initial model selection as well as hyperparameter tuning.
 
 #### Slides
 This folder contains a .pdf file of a brief slide deck summarizing the project.
