@@ -10,7 +10,7 @@ Helen Wang (@helenw566, email: hw566@georgetown.edu)
 > 3.	Identify and verify the factors most predictive of police misconduct case outcomes as well as penalty outcomes.
 
 
-#### Reposiory Contents
+#### Repository Contents
 
 This repository contains the following folders: 
 
